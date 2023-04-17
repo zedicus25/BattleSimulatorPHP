@@ -8,6 +8,7 @@ use Bonuses\Bonus;
 
 use Bonuses\Defend;
 use Bonuses\Faster;
+use Fractions\SacredFaction;
 use Weapons\OneHands\Saber;
 
 
@@ -15,13 +16,14 @@ require_once 'Soldiers/Warior.php';
 require_once 'Armors/MediumArmors/ChainMail.php';
 require_once 'Weapons/OneHands/Saber.php';
 require_once 'Bonuses/Bonus.php';
+require_once 'Fractions/SacredFaction.php';
 
 class Commander extends Warior
 {
     private const MAX_BONUSES = 3;
     private $bonuses;
     private $bonusesCount;
-    public function __construct()
+    public function __construct($facion = null)
     {
         $this->armor = new ChainMail();
         $this->weapon = new Saber();
@@ -38,6 +40,16 @@ class Commander extends Warior
 
         $this->bonusesCount = 0;
         $this->bonuses = array();
+
+        if($facion == null)
+            $this->facion = new SacredFaction();
+        else
+            $this->facion = $facion;
+
+        $this->addArmor($this->facion->getArmorBonus());
+        $this->addSpeed($this->facion->getSpeedBonus());
+        $this->addHealth($this->facion->getHealthBonus());
+        $this->addDamage($this->facion->getDamageBonus());
     }
 
     public function addBonus(Bonus $bonus): void
@@ -59,7 +71,7 @@ class Commander extends Warior
     public  function __toString(): string
     {
         $bonusesStr  = implode("<br>", $this->bonuses);
-        return "Speed: $this->speed <br> Health: $this->health <br> Damage: $this->damage <br> <br> Bonuses:<br>  $bonusesStr";
+        return "Faction: $this->facion <br>Speed: $this->speed <br> Health: $this->health <br> Damage: $this->damage <br> <br> Bonuses:<br>  $bonusesStr";
     }
 
 

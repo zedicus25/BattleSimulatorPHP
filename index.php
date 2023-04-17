@@ -8,13 +8,15 @@ require_once 'Soldiers/FootWariors/FootWarior.php';
 require_once 'Soldiers/Mounted.php';
 require_once 'BattleFields/BattleField.php';
 require_once 'Weathers/RainWeather.php';
+require_once 'Fractions/CursedFaction.php';
+
 
     $squad1 = new \Squads\Squad("Some squad");
-    $commander = new \Soldiers\Commander();
+    $commander = new \Soldiers\Commander(new \Fractions\CursedFaction());
     $commander->addBonus(new \Bonuses\Faster());
     $squad1->setCommander($commander);
     for ($i = 0; $i < 8; $i++){
-        $squad1->addSoldier(new \Soldiers\FootWariors\FootWarior());
+        $squad1->addSoldier(new \Soldiers\FootWariors\FootWarior(new \Fractions\CursedFaction()));
     }
 
     $squad2 = new \Squads\Squad("Some squad 2");
