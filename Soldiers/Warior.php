@@ -17,7 +17,6 @@ abstract class Warior
     protected $health;
     protected $armor;
     protected $weapon;
-
     protected $speed;
     protected $damage;
 

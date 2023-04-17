@@ -2,6 +2,7 @@
 
 namespace Squads;
 
+use Soldiers\Commander;
 use Soldiers\Warior;
 
 
@@ -16,6 +17,8 @@ class Squad
      private $currentCount;
      private $soldiers;
 
+     private $commander;
+
      public function __construct($name)
      {
          $this->name = $name;
@@ -25,7 +28,7 @@ class Squad
 
     public function addSoldier(Warior $warior): void
     {
-        if($this->currentCount < self::MAX_SOLDIERS){
+        if($this->currentCount < (self::MAX_SOLDIERS-1)){
             array_push($this->soldiers, $warior);
             $this->currentCount = $this->currentCount + 1;
         }
@@ -37,6 +40,12 @@ class Squad
             unset($this->soldiers[$id]);
             $this->currentCount = $this->currentCount + 1;
         }
+    }
+
+    public function setCommander(Commander $commander): void
+    {
+        array_unshift($this->soldiers , $commander);
+        $this->currentCount = $this->currentCount + 1;
     }
 
     /**
