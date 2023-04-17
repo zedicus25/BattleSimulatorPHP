@@ -1,8 +1,8 @@
 <?php
 
 namespace Weapons\OneHands;
-
-class Saber
+require_once 'Weapons\Weapon.php';
+class Saber extends \Weapons\Weapon
 {
 
 }

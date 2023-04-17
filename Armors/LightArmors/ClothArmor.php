@@ -1,8 +1,8 @@
 <?php
 
 namespace Armors\LightArmors;
-
-class ClothArmor
+require_once 'Armors/LightArmors/LightArmor.php';
+class ClothArmor extends LightArmor
 {
 
 }

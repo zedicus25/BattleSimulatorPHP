@@ -2,7 +2,8 @@
 
 namespace Armors\LightArmors;
 
-class LeatherArmor
+require_once 'Armors/LightArmors/LightArmor.php';
+class LeatherArmor extends LightArmor
 {
 
 }

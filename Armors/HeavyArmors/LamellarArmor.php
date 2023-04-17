@@ -1,8 +1,8 @@
 <?php
 
 namespace Armors\HeavyArmors;
-
-class LamellarArmor
+require_once 'Armors/HeavyArmors/HeavyArmor.php';
+class LamellarArmor extends HeavyArmor
 {
 
 }

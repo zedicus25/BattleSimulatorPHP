@@ -1,8 +1,8 @@
 <?php
 
 namespace Armors\HeavyArmors;
-
-class SteelArmor
+require_once 'Armors/HeavyArmors/HeavyArmor.php';
+class SteelArmor extends HeavyArmor
 {
 
 }

@@ -1,8 +1,8 @@
 <?php
 
 namespace Armors\MediumArmors;
-
-class ChainMail
+require_once 'Armors/MediumArmors/MediumArmor.php';
+class ChainMail extends MediumArmor
 {
 
 }

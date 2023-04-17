@@ -2,7 +2,10 @@
 
 namespace Armors\MediumArmors;
 
-class MediumArmor
+use Armors\Armor;
+require_once 'Armors/Armor.php';
+
+abstract class MediumArmor extends Armor
 {
 
 }

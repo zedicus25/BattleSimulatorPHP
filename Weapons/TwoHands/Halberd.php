@@ -1,8 +1,12 @@
 <?php
 
 namespace Weapons\TwoHands;
-
-class Halberd
+require_once 'Weapons\Weapon.php';
+class Halberd extends \Weapons\Weapon
 {
-
+    public function __construct()
+    {
+        $this->damage = rand(15,25);
+        $this->speed = rand(10,15);
+    }
 }

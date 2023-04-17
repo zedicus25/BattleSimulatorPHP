@@ -1,8 +1,8 @@
 <?php
 
 namespace Weapons\OneHands;
-
-class Morgenshern
+require_once 'Weapons\Weapon.php';
+class Morgenshern extends \Weapons\Weapon
 {
 
 }

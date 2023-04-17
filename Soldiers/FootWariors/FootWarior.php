@@ -2,7 +2,10 @@
 
 namespace Soldiers\FootWariors;
 
-class FootWarior
-{
+use Soldiers\Warior;
 
+require_once 'Soldiers/Warior.php';
+class FootWarior extends Warior
+{
 }
+?>

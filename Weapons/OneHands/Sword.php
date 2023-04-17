@@ -1,8 +1,8 @@
 <?php
 
 namespace Weapons\OneHands;
-
-class Sword
+require_once 'Weapons\Weapon.php';
+class Sword extends \Weapons\Weapon
 {
 
 }
