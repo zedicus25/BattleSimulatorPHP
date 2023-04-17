@@ -30,4 +30,9 @@ class Mounted extends Warior
         $this->speed = rand(25,35);
         $this->speed = $this->speed - $this->armor->getSpeed() + $this->horse->getSpeed();
     }
+
+    public  function __toString(): string
+    {
+        return "Speed: $this->speed <br> Health: $this->health <br> Damage: $this->damage <br> <br> Horse:<br>  $this->horse";
+    }
 }

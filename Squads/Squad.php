@@ -7,6 +7,7 @@ use Soldiers\Warior;
 
 
 require_once 'Soldiers/Warior.php';
+require_once 'Bonuses/Bonus.php';
 class Squad
 {
      private const  MIN_SOLDIERS = 5;
@@ -29,8 +30,19 @@ class Squad
     public function addSoldier(Warior $warior): void
     {
         if($this->currentCount < (self::MAX_SOLDIERS-1)){
+
+            foreach ($this->commander->getBonuses() as $bonus) {
+                $warior->addArmor($bonus->getBonus());
+                $warior->addSpeed($bonus->getBonus());
+                $warior->addHealth($bonus->getBonus());
+                $warior->addDamage($bonus->getBonus());
+            }
             array_push($this->soldiers, $warior);
+
             $this->currentCount = $this->currentCount + 1;
+        }
+        else{
+            echo "<br>Squad to big!<br>";
         }
     }
 
@@ -44,8 +56,16 @@ class Squad
 
     public function setCommander(Commander $commander): void
     {
-        array_unshift($this->soldiers , $commander);
-        $this->currentCount = $this->currentCount + 1;
+        $this->commander = $commander;
+        $this->applyBonuses();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommander()
+    {
+        return $this->commander;
     }
 
     /**
@@ -56,4 +76,24 @@ class Squad
         return $this->name;
     }
 
+    private function applyBonuses() : void {
+        foreach ($this->soldiers as $soldier) {
+            foreach ($this->commander->getBonuses() as $bonus) {
+                $soldier->addArmor($bonus->getBonus());
+                $soldier->addSpeed($bonus->getBonus());
+                $soldier->addHealth($bonus->getBonus());
+                $soldier->addDamage($bonus->getBonus());
+            }
+        }
+    }
+
+    public function __toString(): string
+    {
+        $res = "Commander: <br> $this->commander <br>";
+        foreach ($this->soldiers as $soldier)
+        {
+            $res = "$res <br> Soldier: <br> $soldier";
+        }
+        return $res;
+    }
 }

@@ -76,44 +76,39 @@ abstract class Warior
         return $this->weapon;
     }
 
-    /**
-     * @param Armor $armor
-     */
-    public function setArmor(Armor $armor): void
+
+    public function addArmor(int $armor): void
     {
-        $this->armor = $armor;
+        $this->armor = $this->health + $armor;
     }
 
-    /**
-     * @param Weapon $weapon
-     */
-    public function setWeapon(Weapon $weapon): void
-    {
-        $this->weapon = $weapon;
-    }
+
 
     /**
      * @param int $speed
      */
-    public function setSpeed(int $speed): void
+    public function addSpeed(int $speed): void
     {
-        $this->speed = $speed;
+        $this->speed = $this->speed + $speed;
     }
 
     /**
      * @param int $health
      */
-    public function setHealth(int $health): void
+    public function addHealth(int $health): void
     {
-        $this->health = $health;
+        $this->health = $this->health + $health;
     }
 
     /**
      * @param float|int $damage
      */
-    public function setDamage(float|int $damage): void
+    public function addDamage(float|int $damage): void
     {
-        $this->damage = $damage;
+        $this->damage = $this->damage + $damage;
     }
+
+    public abstract function  __toString(): string;
+
 }
 ?>

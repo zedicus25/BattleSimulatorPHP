@@ -44,4 +44,8 @@ class Horse
     {
         $this->speed = $speed;
     }
+    public function __toString(): string
+    {
+        return "Horse speed: $this->speed <br> Horse health: $this->health";
+    }
 }
