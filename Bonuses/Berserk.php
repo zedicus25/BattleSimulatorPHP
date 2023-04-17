@@ -12,10 +12,7 @@ class Berserk extends Bonus
         $this->damage = rand(50,80);
     }
 
-    public function getBonus() : float
-    {
-        return $this->damage;
-    }
+
 
     public  function __toString(): string{
         return "Berserk: $this->damage";

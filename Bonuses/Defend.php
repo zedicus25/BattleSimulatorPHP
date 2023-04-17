@@ -12,10 +12,6 @@ class Defend extends Bonus
         $this->damage = 0;
     }
 
-    public function getBonus() : float
-    {
-        return $this->armor;
-    }
 
     public  function __toString(): string{
         return "Defend: $this->armor";

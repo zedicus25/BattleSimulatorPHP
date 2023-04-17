@@ -11,7 +11,37 @@ abstract class Bonus
     public abstract function __construct();
 
 
-    public abstract function getBonus();
+    /**
+     * @return mixed
+     */
+    public function getSpeed()
+    {
+        return $this->speed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDamage()
+    {
+        return $this->damage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArmor()
+    {
+        return $this->armor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHealth()
+    {
+        return $this->health;
+    }
 
     public abstract function __toString(): string;
 

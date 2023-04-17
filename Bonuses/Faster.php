@@ -12,10 +12,7 @@ class Faster extends Bonus
         $this->damage = 0;
     }
 
-    public function getBonus() : float
-    {
-        return $this->speed;
-    }
+
 
     public  function __toString(): string{
         return "Faster: $this->speed";

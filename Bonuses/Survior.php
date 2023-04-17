@@ -12,10 +12,7 @@ class Survior extends Bonus
         $this->damage = 0;
     }
 
-    public function getBonus() : float
-    {
-        return $this->health;
-    }
+
 
     public  function __toString(): string{
         return "Survior: $this->health";

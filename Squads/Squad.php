@@ -4,10 +4,12 @@ namespace Squads;
 
 use Soldiers\Commander;
 use Soldiers\Warior;
+use Weathers\Weather;
 
 
 require_once 'Soldiers/Warior.php';
 require_once 'Bonuses/Bonus.php';
+require_once 'Weathers/Weather.php';
 class Squad
 {
      private const  MIN_SOLDIERS = 5;
@@ -32,10 +34,10 @@ class Squad
         if($this->currentCount < (self::MAX_SOLDIERS-1)){
 
             foreach ($this->commander->getBonuses() as $bonus) {
-                $warior->addArmor($bonus->getBonus());
-                $warior->addSpeed($bonus->getBonus());
-                $warior->addHealth($bonus->getBonus());
-                $warior->addDamage($bonus->getBonus());
+                $warior->addArmor($bonus->getArmor());
+                $warior->addSpeed($bonus->getSpeed());
+                $warior->addHealth($bonus->getHealth());
+                $warior->addDamage($bonus->getDamage());
             }
             array_push($this->soldiers, $warior);
 
@@ -60,6 +62,12 @@ class Squad
         $this->applyBonuses();
     }
 
+    public function applyWeatherEffect(Weather $weather) : void {
+        foreach ($this->soldiers as $soldier) {
+                $soldier->addSpeed($weather->getSpeed());
+        }
+    }
+
     /**
      * @return mixed
      */
@@ -79,17 +87,18 @@ class Squad
     private function applyBonuses() : void {
         foreach ($this->soldiers as $soldier) {
             foreach ($this->commander->getBonuses() as $bonus) {
-                $soldier->addArmor($bonus->getBonus());
-                $soldier->addSpeed($bonus->getBonus());
-                $soldier->addHealth($bonus->getBonus());
-                $soldier->addDamage($bonus->getBonus());
+                $soldier->addArmor($bonus->getArmor());
+                $soldier->addSpeed($bonus->getSpeed());
+                $soldier->addHealth($bonus->getHealth());
+                $soldier->addDamage($bonus->getDamage());
             }
         }
     }
 
     public function __toString(): string
     {
-        $res = "Commander: <br> $this->commander <br>";
+        $res = "Squad name: <br> $this->name <br> <br>";
+        $res = "$res Commander: <br> $this->commander <br>";
         foreach ($this->soldiers as $soldier)
         {
             $res = "$res <br> Soldier: <br> $soldier";

@@ -6,18 +6,30 @@ require_once 'Bonuses/Defend.php';
 require_once 'Bonuses/Faster.php';
 require_once 'Soldiers/FootWariors/FootWarior.php';
 require_once 'Soldiers/Mounted.php';
+require_once 'BattleFields/BattleField.php';
+require_once 'Weathers/RainWeather.php';
 
-    $squad = new \Squads\Squad("Some squad");
-    echo  $squad->getName();
-    echo "<br>";
-    echo "<br>";
+    $squad1 = new \Squads\Squad("Some squad");
     $commander = new \Soldiers\Commander();
-    //$commander->addBonus(new \Bonuses\Defend());
     $commander->addBonus(new \Bonuses\Faster());
-    $squad->setCommander($commander);
+    $squad1->setCommander($commander);
     for ($i = 0; $i < 8; $i++){
-        $squad->addSoldier(new \Soldiers\FootWariors\FootWarior());
+        $squad1->addSoldier(new \Soldiers\FootWariors\FootWarior());
     }
 
-    echo $squad;
+    $squad2 = new \Squads\Squad("Some squad 2");
+    $commander = new \Soldiers\Commander();
+    $commander->addBonus(new \Bonuses\Defend());
+    $squad2->setCommander($commander);
+    for ($i = 0; $i < 5; $i++){
+        $squad2->addSoldier(new \Soldiers\FootWariors\FootWarior());
+    }
+
+    $battleField = new \BattleFields\BattleField("Battlefield", new \Weathers\RainWeather());
+    $battleField->addSquad($squad1);
+    $battleField->addSquad($squad2);
+    echo $battleField;
+
+
+
 ?>
