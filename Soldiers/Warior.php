@@ -50,12 +50,28 @@ abstract class Warior
         $this->addDamage($this->facion->getDamageBonus());
     }
 
+
+    public function takeDamage($damege){
+        if($this->isAlive())
+            $this->health = $this->health - $this->damage;
+        else
+            $this->health = 0;
+    }
+
     /**
      * @return Armor
      */
     public function getArmor(): Armor
     {
         return $this->armor;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAlive(): bool
+    {
+        return $this->health > 0;
     }
 
     /**

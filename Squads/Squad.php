@@ -48,12 +48,32 @@ class Squad
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getSoldiers(): array
+    {
+        return $this->soldiers;
+    }
+
+    public function getSoldier($id) : Warior{
+         return $this->soldiers[$id];
+    }
+
     public function removeSoldier($id) : void
     {
         if($this->currentCount > 0){
             unset($this->soldiers[$id]);
             $this->currentCount = $this->currentCount + 1;
         }
+    }
+
+    public function squadIsAlive() : bool{
+        foreach ($this->soldiers as $soldier) {
+            if($soldier->isAlive())
+                return true;
+        }
+        return false;
     }
 
     public function setCommander(Commander $commander): void

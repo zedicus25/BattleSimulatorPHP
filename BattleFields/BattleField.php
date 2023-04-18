@@ -34,7 +34,76 @@ class BattleField
         if ($this->currentSquadCount < self::MIN_SQUADS)
             echo "Add more squads!";
         else
-            echo "Battle";
+           $this->Battle();
+    }
+
+    private function Battle() : void{
+        do
+        {
+            $squadsId = array_rand($this->squads, 2);
+
+            $squad1Id = $squadsId[0];
+            $squad2Id = $squadsId[1];
+
+
+
+            $soldier1Id = array_rand($this->squads[$squad1Id]->getSoldiers());
+
+            $soldier2Id = array_rand($this->squads[$squad2Id]->getSoldiers());
+
+            $soldier1 = $this->squads[$squad1Id]->getSoldier($soldier1Id);
+            $soldier2 = $this->squads[$squad2Id]->getSoldier($soldier2Id);
+
+            if(!$soldier1->isAlive() || !$soldier1->isAlive()){
+                do{
+                    $soldier1Id = array_rand($this->squads[$squad1Id]->getSoldiers());
+
+                    $soldier2Id = array_rand($this->squads[$squad2Id]->getSoldiers());
+
+                    $soldier1 = $this->squads[$squad1Id]->getSoldier($soldier1Id);
+                    $soldier2 = $this->squads[$squad2Id]->getSoldier($soldier2Id);
+                }
+                while($soldier1->isAlive() && $soldier2->isAlive());
+            }
+
+
+            $squad1name = $this->squads[$squad1Id]->getName();
+            $squad2name = $this->squads[$squad2Id]->getName();
+
+            $soldier1->takeDamage($soldier2->getDamage());
+            echo "Soldier$soldier1Id from squad $squad1name attack soldier$soldier2Id from  squad $squad2name";
+            echo '<br>';
+            echo "Soldier$soldier2Id stats now <br>";
+            echo $soldier2;
+            echo "<br><br><br>";
+            $soldier2->takeDamage($soldier1->getDamage());
+            echo "Soldier$soldier2Id from squad $squad2name attack soldier$soldier1Id from  squad $squad1name";
+            echo '<br>';
+            echo "Soldier$soldier1Id stats now <br>";
+            echo $soldier1;
+            echo "<br>";
+            echo "----------------------------------------------";
+            echo "<br>";
+        }
+        while($this->IsHasAliveSquads());
+
+        foreach ($this->squads as $squad) {
+            if($squad->squadIsAlive()){
+                echo "<h3> Squad: ".$squad->getName()." win!</h3>";
+            }
+        }
+    }
+
+    private function IsHasAliveSquads() : bool {
+        $aliveSquads = 0;
+        foreach ($this->squads as $squad) {
+            if($squad->squadIsAlive()){
+                $aliveSquads++;
+            }
+        }
+        if($aliveSquads > 1)
+            return true;
+        return false;
     }
 
     public function __toString(): string

@@ -11,7 +11,7 @@ require_once 'Weathers/RainWeather.php';
 require_once 'Fractions/CursedFaction.php';
 
 
-    $squad1 = new \Squads\Squad("Some squad");
+    $squad1 = new \Squads\Squad("SQUAD 1");
     $commander = new \Soldiers\Commander(new \Fractions\CursedFaction());
     $commander->addBonus(new \Bonuses\Faster());
     $squad1->setCommander($commander);
@@ -19,7 +19,7 @@ require_once 'Fractions/CursedFaction.php';
         $squad1->addSoldier(new \Soldiers\FootWariors\FootWarior(new \Fractions\CursedFaction()));
     }
 
-    $squad2 = new \Squads\Squad("Some squad 2");
+    $squad2 = new \Squads\Squad("SQUAD 2");
     $commander = new \Soldiers\Commander();
     $commander->addBonus(new \Bonuses\Defend());
     $squad2->setCommander($commander);
@@ -27,11 +27,19 @@ require_once 'Fractions/CursedFaction.php';
         $squad2->addSoldier(new \Soldiers\FootWariors\FootWarior());
     }
 
+    $squad3 = new \Squads\Squad("SQUAD 3");
+    $commander = new \Soldiers\Commander();
+    $commander->addBonus(new \Bonuses\Defend());
+    $squad3->setCommander($commander);
+    for ($i = 0; $i < 5; $i++){
+        $squad3->addSoldier(new \Soldiers\FootWariors\FootWarior());
+    }
+
     $battleField = new \BattleFields\BattleField("Battlefield", new \Weathers\RainWeather());
     $battleField->addSquad($squad1);
     $battleField->addSquad($squad2);
-    echo $battleField;
-
-
+    $battleField->addSquad($squad3);
+    $battleField->startBattle();
+    //echo $battleField;
 
 ?>
